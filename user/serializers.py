@@ -5,13 +5,13 @@ from user import models
 
 
 class CustomRegisterSerializer(RegisterSerializer):
-    email = serializers.EmailField(required=True)
-    password1 = serializers.CharField(write_only=True)
-    first_name = serializers.CharField(required=True)
-    last_name = serializers.CharField(required=True)
-    birth_date = serializers.DateField(required=True)
+    email = serializers.EmailField(required=False)
+    password1 = serializers.CharField(write_only=False)
+    first_name = serializers.CharField(required=False)
+    last_name = serializers.CharField(required=False)
+    birth_date = serializers.DateField(required=False)
     year_of_experience = serializers.DecimalField(max_digits=5, decimal_places=2,  default=0.0)
-    address = serializers.CharField(required=True)
+    address = serializers.CharField(required=False)
     profile_picture = serializers.ImageField(max_length=None, use_url=True, allow_null=True, required=False)
     preferred_language = serializers.CharField(required=True)
 
@@ -35,5 +35,5 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.User
-        fields = ('first_name', 'last_name', 'email', 'birth_date', 'year_of_experience', 'address', 'profile_picture',
+        fields = ('id', 'first_name', 'last_name', 'email', 'birth_date', 'year_of_experience', 'address', 'profile_picture',
                   'preferred_language')
